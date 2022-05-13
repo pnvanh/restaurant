@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 abstract class AuthenticationEvent extends Equatable {
   @override
-  List<Object> get props => [];
+  List<dynamic> get props => [];
 }
 
 class AuthenticationCheckAuthSession extends AuthenticationEvent {}
@@ -13,7 +13,7 @@ class AuthenticationUserChanged extends AuthenticationEvent {
   AuthenticationUserChanged(this.token);
 
   @override
-  List<Object> get props => [];
+  List<dynamic> get props => [];
 }
 
 class AuthenticationLogoutRequeted extends AuthenticationEvent {}

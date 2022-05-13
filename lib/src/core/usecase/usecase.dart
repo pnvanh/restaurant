@@ -12,12 +12,12 @@ class Params extends Equatable {
   const Params();
 
   @override
-  List<Object> get props => [];
+  List<dynamic> get props => [];
 }
 
 class NoParams extends Equatable {
   const NoParams();
 
   @override
-  List<Object> get props => [];
+  List<dynamic> get props => [];
 }

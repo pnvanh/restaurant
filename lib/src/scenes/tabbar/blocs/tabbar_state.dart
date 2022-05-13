@@ -30,5 +30,5 @@ class TabbarState extends Equatable {
         );
 
   @override
-  List<Object> get props => [status];
+  List<dynamic> get props => [status];
 }

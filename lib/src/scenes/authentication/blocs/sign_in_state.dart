@@ -25,7 +25,7 @@ class SignInState extends Equatable {
         passwordErrorMessage = passwordErrorMessage;
 
   @override
-  List<Object?> get props => [
+  List<dynamic?> get props => [
         status,
         errorMessage,
         emailErrorMessage,

@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 abstract class TabbarEvent extends Equatable {
   @override
-  List<Object> get props => [];
+  List<dynamic> get props => [];
 }
 
 class TabbarHomeSelected extends TabbarEvent {}

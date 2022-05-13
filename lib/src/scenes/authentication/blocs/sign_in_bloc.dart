@@ -63,6 +63,9 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       print('Email: ${state.email.value}');
       print('Password: ${state.password.value}');
       print('===Continue===');
+      await signInlUseCase
+          .call(SignInEmailParams(state.email.value, state.password.value));
+      yield state.copyWith(status: FormzStatus.submissionSuccess);
     } on SignFailure catch (error) {
       yield state.copyWith(
           errorMessage: error.message, status: FormzStatus.submissionFailure);

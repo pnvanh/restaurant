@@ -4,7 +4,7 @@ abstract class SignInEvent extends Equatable {
   const SignInEvent();
 
   @override
-  List<Object?> get props => [];
+  List<dynamic?> get props => [];
 }
 
 class SignInEmailChanged extends SignInEvent {
@@ -13,7 +13,7 @@ class SignInEmailChanged extends SignInEvent {
   const SignInEmailChanged(this.email);
 
   @override
-  List<Object?> get props => [email];
+  List<dynamic?> get props => [email];
 }
 
 class SignInPasswordChanged extends SignInEvent {
@@ -22,7 +22,7 @@ class SignInPasswordChanged extends SignInEvent {
   const SignInPasswordChanged(this.password);
 
   @override
-  List<Object?> get props => [password];
+  List<dynamic?> get props => [password];
 }
 
 class SignInSubmited extends SignInEvent {

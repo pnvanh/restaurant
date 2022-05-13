@@ -1,4 +1,5 @@
 import 'package:restaurant/src/core/errror/error.dart';
+import 'package:restaurant/src/datasources/local/authentication_local_datasource.dart';
 import 'package:restaurant/src/services/api/app/api_authentication.dart';
 import 'package:restaurant/src/services/api/core/api_service.dart';
 
@@ -16,6 +17,7 @@ class AuthenticationRemoteDatasourceImplement
       final String? token;
       if (output.success) {
         token = output.token ?? "";
+        AuthenticationLocalDatasourceImplement.shared.saveAccessToken(token);
         return token;
       }
       throw ServerException('Sign In Failture');

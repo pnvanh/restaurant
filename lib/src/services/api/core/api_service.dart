@@ -33,7 +33,7 @@ class APIService<T> {
 
       final response =
           await client.get(Uri.parse(input.url), headers: input.headers);
-      final json = jsonDecode(response.body) as Map<String, Object>;
+      final json = jsonDecode(response.body) as Map<String, dynamic>;
 
       print('===RESPONSE===');
       print('Status code: ${response.statusCode}');
@@ -54,12 +54,13 @@ class APIService<T> {
       print('Method: POST');
       print('Body: ${input.body}');
       print('Headers: ${input.headers}');
+      print('===RESPONSE===');
 
       final response = await client.post(Uri.parse(input.url),
           headers: input.headers, body: input.body);
-      final json = jsonDecode(response.body) as Map<String, Object>;
+      print('Body: ${response.body}');
+      final json = jsonDecode(response.body) as Map<String, dynamic>;
 
-      print('===RESPONSE===');
       print('Status code: ${response.statusCode}');
       print(json);
 
@@ -71,7 +72,7 @@ class APIService<T> {
   }
 
   // TODOs: Get json from local
-  Future<Map<String, Object>> parseJsonFromAssets(String assetsPath) async {
+  Future<Map<String, dynamic>> parseJsonFromAssets(String assetsPath) async {
     print('--- Parse json from: $assetsPath');
     return rootBundle
         .loadString(assetsPath)
