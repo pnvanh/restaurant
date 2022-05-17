@@ -19,10 +19,6 @@ class RootBodyState extends State<RootBody> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // theme: new ThemeData(
-      //   primaryColor: AppColors.jungleGreen,
-      //   canvasColor: Colors.transparent,
-      // ),
       navigatorKey: navigatorKey,
       home: BlocProvider(
         create: (context) =>

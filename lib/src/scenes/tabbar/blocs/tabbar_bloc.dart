@@ -15,10 +15,6 @@ class TabbarBloc extends Bloc<TabbarEvent, TabbarState> {
       yield TabbarState.discover();
     }
 
-    if (event is TabbarNotificationSelected) {
-      yield TabbarState.notification();
-    }
-
     if (event is TabbarProfileSelected) {
       yield TabbarState.profile();
     }

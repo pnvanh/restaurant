@@ -11,4 +11,6 @@ class AppColors {
   static final oxfordBlue = Color(0xFF374151);
   static final heather = Color(0xFFBEC5D1);
   static final grayChateau = Color(0xFF9CA3AF);
+  static final gray = Color(0xFF4B5563);
+  static final backgroudColor = Color(0xFFF6F6F6);
 }
