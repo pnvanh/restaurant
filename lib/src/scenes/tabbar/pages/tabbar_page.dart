@@ -5,7 +5,6 @@ import '../../discover/pages/discover_body.dart';
 import 'pages.dart';
 
 class TabbarPage extends StatelessWidget {
-  // const TabBarPage({Key? key}) : super(key: key);
   static Route route() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => TabbarPage(),
@@ -21,12 +20,6 @@ class TabbarPage extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => TabbarBloc(TabbarState.home()),
-        ),
-        BlocProvider(
-          create: (context) => TabbarBloc(TabbarState.discover()),
-        ),
-        BlocProvider(
-          create: (context) => TabbarBloc(TabbarState.profile()),
         ),
       ],
       child: TabbarBody(),

@@ -40,54 +40,50 @@ class TabbarBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        extendBody: true,
-        backgroundColor: AppColors.backgroudColor,
-        body: BlocBuilder<TabbarBloc, TabbarState>(
-          builder: (context, state) {
-            return IndexedStack(
-                index: _selectedIndex(state.status),
-                children: components.children);
-          },
-        ),
-        bottomNavigationBar: BlocBuilder<TabbarBloc, TabbarState>(
-          builder: (context, state) {
-            return Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    topLeft: Radius.circular(30)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0),
+    return Scaffold(
+      extendBody: true,
+      backgroundColor: AppColors.backgroudColor,
+      body: BlocBuilder<TabbarBloc, TabbarState>(
+        builder: (context, state) {
+          return IndexedStack(
+              index: _selectedIndex(state.status),
+              children: components.children);
+        },
+      ),
+      bottomNavigationBar: BlocBuilder<TabbarBloc, TabbarState>(
+        builder: (context, state) {
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: Offset(0, 3),
                 ),
-                child: BottomNavigationBar(
-                  showSelectedLabels: false,
-                  showUnselectedLabels: false,
-                  backgroundColor: Colors.white,
-                  fixedColor: AppColors.jungleGreen,
-                  unselectedItemColor: AppColors.gray,
-                  type: BottomNavigationBarType.fixed,
-                  items: components.items,
-                  currentIndex: _selectedIndex(state.status),
-                  onTap: (index) => _onItemTapped(index, context),
-                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30.0),
+                topRight: Radius.circular(30.0),
               ),
-            );
-          },
-        ),
+              child: BottomNavigationBar(
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                backgroundColor: Colors.white,
+                fixedColor: AppColors.jungleGreen,
+                unselectedItemColor: AppColors.gray,
+                type: BottomNavigationBarType.fixed,
+                items: components.items,
+                currentIndex: _selectedIndex(state.status),
+                onTap: (index) => _onItemTapped(index, context),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
