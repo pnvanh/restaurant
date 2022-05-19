@@ -4,9 +4,11 @@ import 'package:formz/formz.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 import 'package:restaurant/src/constants/constants.dart';
+import 'package:restaurant/src/routers/routers.dart';
 import 'package:restaurant/src/scenes/authentication/blocs/sign_in_bloc.dart';
 import 'package:restaurant/src/scenes/authentication/blocs/sign_in_event.dart';
 import 'package:restaurant/src/scenes/authentication/blocs/sign_in_state.dart';
+import 'package:restaurant/src/scenes/tabbar/pages/pages.dart';
 import 'package:restaurant/src/scenes/widgets/widgets.dart';
 
 class SignInBody extends StatefulWidget {
@@ -27,29 +29,26 @@ class _SignInBodyState extends State<SignInBody> {
     _isButtonDisabled = true;
   }
 
-  void _checkValidateInput() {
-    setState(() {
-      if (_emailString.isNotEmpty && _passwordString.isNotEmpty) {
-        _isButtonDisabled = false;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignInBloc, SignInState>(
         listener: (context, state) {
           if (state.status.isSubmissionFailure) {
             MotionToast.error(
-              title: Text("Error"),
-              description: Text("Incorrect email or password"),
-              position: MOTION_TOAST_POSITION.top,
-              layoutOrientation: ORIENTATION.ltr,
-              animationType: ANIMATION.fromLeft
-            ).show(context);
+                    title: Text("Error"),
+                    description: Text("Incorrect email or password"),
+                    position: MOTION_TOAST_POSITION.top,
+                    layoutOrientation: ORIENTATION.ltr,
+                    animationType: ANIMATION.fromLeft)
+                .show(context);
           }
           if (state.status.isSubmissionSuccess) {
-            print('Log in successfullty');
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => TabbarPage()),
+              ModalRoute.withName("/main"),
+              // (Route<dynamic> route) => false,
+            );
           }
         },
         child: BlocBuilder<SignInBloc, SignInState>(
@@ -107,11 +106,6 @@ class _SignInBodyState extends State<SignInBody> {
                                   .add(SignInSubmited()),
                             };
                     },
-                    // onPressed: _isButtonDisabled
-                    //     ? null
-                    //     : () {
-                    //         print(_passwordString);
-                    //       },
                     child: Text(
                       "Log in",
                       style: AppTextStyles.textBold(14, Colors.white),

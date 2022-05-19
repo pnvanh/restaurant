@@ -15,6 +15,7 @@ class AuthenticationLocalDatasourceImplement
   Future<void> saveAccessToken(String accessToken) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString(ACCESS_TOKEN, accessToken);
+    sharedPreferences.setBool(IS_LOGGER, true);
   }
 
   @override

@@ -1,1 +1,2 @@
 const ACCESS_TOKEN = 'ACCESS_TOKEN';
+const IS_LOGGER = 'IS_LOGGER';
