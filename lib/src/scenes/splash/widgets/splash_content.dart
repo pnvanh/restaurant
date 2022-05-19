@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/src/constants/app_constraint.dart';
 import 'package:restaurant/src/constants/constants.dart';
 
 class SplashContent extends StatelessWidget {

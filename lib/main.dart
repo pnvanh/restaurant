@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant/src/data/repositories/authentication_repository_implement.dart';
 import 'package:restaurant/src/routers/routers.dart';
 import 'package:restaurant/src/scenes/root/pages/root_page.dart';
-import 'package:restaurant/src/scenes/tabbar/pages/pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

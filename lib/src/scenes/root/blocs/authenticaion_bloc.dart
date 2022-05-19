@@ -8,9 +8,9 @@ import 'package:restaurant/src/scenes/root/blocs/authentication_state.dart';
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({required AuthenticationRepository repository})
-      : this.repository = repository,
+      : repository = repository,
         super(AuthenticationState.unknown()) {
-    this.tokenSubscription = this
+    tokenSubscription = this
         .repository
         .token
         .listen((accessToken) => add(AuthenticationUserChanged(accessToken)));

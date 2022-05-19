@@ -6,7 +6,7 @@ import 'package:restaurant/src/scenes/root/blocs/authenticaion_event.dart';
 import 'root_body.dart';
 
 class RootPage extends StatelessWidget {
-  RootPage({Key? key, required this.authenticationRepository})
+  const RootPage({Key? key, required this.authenticationRepository})
       : super(key: key);
 
   final AuthenticationRepository authenticationRepository;

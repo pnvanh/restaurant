@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeBody extends StatefulWidget {
-  HomeBody({Key? key}) : super(key: key);
+  const HomeBody({Key? key}) : super(key: key);
 
   @override
   State<HomeBody> createState() => _HomeBodyState();
@@ -10,7 +10,7 @@ class HomeBody extends StatefulWidget {
 class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: Center(child: Text("Home")),

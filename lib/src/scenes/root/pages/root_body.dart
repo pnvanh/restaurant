@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant/src/constants/constants.dart';
 import 'package:restaurant/src/data/repositories/authentication_repository_implement.dart';
 import 'package:restaurant/src/scenes/authentication/pages/pages.dart';
 import 'package:restaurant/src/scenes/root/blocs/authenticaion_bloc.dart';

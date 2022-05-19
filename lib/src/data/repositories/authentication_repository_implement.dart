@@ -1,15 +1,14 @@
 import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:restaurant/src/core/errror/error.dart';
-import 'package:restaurant/src/core/errror/failure.dart';
 import 'package:restaurant/src/core/network/network_info.dart';
 import 'package:restaurant/src/datasources/local/authentication_local_datasource.dart';
 import 'package:restaurant/src/datasources/remote/authentication_remote_datasource.dart';
 import 'package:restaurant/src/platform/repositories/repositories.dart';
 
-class SignFailure extends Failure {
+class SignInFailure extends Failure {
   final String message;
-  SignFailure(this.message);
+  const SignInFailure(this.message);
 }
 
 class AuthenticationRepositoryImplement extends AuthenticationRepository {
@@ -27,15 +26,17 @@ class AuthenticationRepositoryImplement extends AuthenticationRepository {
       try {
         final accessToken =
             await remoteDatasource.signInByEmail(email, password);
-
+        print("Access Token:" + accessToken);
         localDatasource.saveAccessToken(accessToken);
         return Right(accessToken);
       } on ServerException catch (error) {
-        return Left(SignFailure(error.message));
+        return Left(SignInFailure(error.message));
+      } catch (error) {
+        return Left(SignInFailure(error.toString()));
       }
     } else {
       //-TODO: get cache user
-      return Left(SignFailure('Failure!'));
+      return Left(SignInFailure('Failure!'));
     }
   }
 

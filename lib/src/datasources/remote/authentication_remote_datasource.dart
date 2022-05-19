@@ -15,12 +15,14 @@ class AuthenticationRemoteDatasourceImplement
       final input = LoginInput(email, password);
       final output = await APIService.shared.performSignInByEmail(input);
       final String? token;
+
       if (output.success) {
         token = output.token ?? "";
         AuthenticationLocalDatasourceImplement.shared.saveAccessToken(token);
         return token;
+      } else {
+        throw ServerException(output.errorMessage);
       }
-      throw ServerException('Sign In Failture');
     } on ServerException catch (error) {
       throw ServerException(error.message);
     }

@@ -64,9 +64,15 @@ class APIService<T> {
       print('Status code: ${response.statusCode}');
       print(json);
 
-      return APIBaseOutput(json);
+      if (json["status"]) {
+        return APIBaseOutput(json);
+      } else {
+        throw ServerException(json["message"]);
+      }
+
+      // return APIBaseOutput(json);
     } catch (error) {
-      print('Error: ${error.toString()}');
+      // print('Error: ${error.toString()}');
       throw ServerException('API: POST FAILURE!');
     }
   }

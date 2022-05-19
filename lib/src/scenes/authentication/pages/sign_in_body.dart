@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import 'package:restaurant/src/constants/constants.dart';
 import 'package:restaurant/src/scenes/authentication/blocs/sign_in_bloc.dart';
 import 'package:restaurant/src/scenes/authentication/blocs/sign_in_event.dart';
@@ -15,8 +17,8 @@ class SignInBody extends StatefulWidget {
 }
 
 class _SignInBodyState extends State<SignInBody> {
-  late String _emailString = "";
-  late String _passwordString = "";
+  late final String _emailString = "";
+  late final String _passwordString = "";
   late bool _isButtonDisabled;
 
   @override
@@ -38,9 +40,13 @@ class _SignInBodyState extends State<SignInBody> {
     return BlocListener<SignInBloc, SignInState>(
         listener: (context, state) {
           if (state.status.isSubmissionFailure) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(const SnackBar(content: Text('Sign in failure')));
+            MotionToast.error(
+              title: Text("Error"),
+              description: Text("Incorrect email or password"),
+              position: MOTION_TOAST_POSITION.top,
+              layoutOrientation: ORIENTATION.ltr,
+              animationType: ANIMATION.fromLeft
+            ).show(context);
           }
           if (state.status.isSubmissionSuccess) {
             print('Log in successfullty');
@@ -95,9 +101,11 @@ class _SignInBodyState extends State<SignInBody> {
                     onPressed: () {
                       (state.emailInvalid && state.passwordInvalid)
                           ? null
-                          : FocusManager.instance.primaryFocus?.unfocus();
-                      BlocProvider.of<SignInBloc>(context)
-                          .add(SignInSubmited());
+                          : {
+                              FocusManager.instance.primaryFocus?.unfocus(),
+                              BlocProvider.of<SignInBloc>(context)
+                                  .add(SignInSubmited()),
+                            };
                     },
                     // onPressed: _isButtonDisabled
                     //     ? null

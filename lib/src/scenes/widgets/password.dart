@@ -6,7 +6,7 @@ class Password extends FormzInput<String, PasswordValidationError?> {
   const Password.pure() : super.pure('');
   const Password.dirty([String value = '']) : super.dirty(value);
 
-  static final minLength = 6;
+  static const minLength = 6;
 
   @override
   PasswordValidationError? validator(String value) {

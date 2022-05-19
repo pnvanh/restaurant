@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant/src/scenes/authentication/widgets/widgets.dart';
 
 class AuthenticationBody extends StatefulWidget {
-  AuthenticationBody({Key? key}) : super(key: key);
+  const AuthenticationBody({Key? key}) : super(key: key);
 
   @override
   State<AuthenticationBody> createState() => _AuthenticationBodyState();

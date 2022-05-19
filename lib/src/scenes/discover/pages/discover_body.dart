@@ -8,7 +8,7 @@ class DiscoverBody extends StatefulWidget {
 class _DiscoverBodyState extends State<DiscoverBody> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: Center(child: Text("Discover")),

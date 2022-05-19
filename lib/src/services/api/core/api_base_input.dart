@@ -9,7 +9,7 @@ class APIBaseInput extends Equatable {
   Map<String, String>? headers;
 
   APIBaseInput({required String url, this.urlParams, this.body, this.headers})
-      : this.url = url;
+      : url = url;
 
   @override
   List<dynamic> get props => [url, urlParams ?? {}, body ?? {}];

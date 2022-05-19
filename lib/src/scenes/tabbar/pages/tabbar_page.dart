@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant/src/scenes/tabbar/blocs/bloc.dart';
-import '../../discover/pages/discover_body.dart';
 import 'pages.dart';
 
 class TabbarPage extends StatelessWidget {

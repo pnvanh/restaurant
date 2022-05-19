@@ -5,21 +5,21 @@ enum TabbarStatus { home, discover, profile }
 class TabbarState extends Equatable {
   final TabbarStatus status;
 
-  TabbarState._({
+  const TabbarState._({
     this.status = TabbarStatus.home,
   });
 
-  TabbarState.discover()
+  const TabbarState.discover()
       : this._(
           status: TabbarStatus.discover,
         );
 
-  TabbarState.home()
+  const TabbarState.home()
       : this._(
           status: TabbarStatus.home,
         );
 
-  TabbarState.profile()
+  const TabbarState.profile()
       : this._(
           status: TabbarStatus.profile,
         );

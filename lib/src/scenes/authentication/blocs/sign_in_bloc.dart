@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:restaurant/src/data/repositories/authentication_repository_implement.dart';
+import 'package:restaurant/src/core/errror/exception.dart';
 import 'package:restaurant/src/platform/usecase/usecase.dart';
 import 'package:restaurant/src/scenes/authentication/blocs/sign_in_event.dart';
 import 'package:restaurant/src/scenes/authentication/blocs/sign_in_state.dart';
@@ -62,13 +62,21 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       print('Login - Start');
       print('Email: ${state.email.value}');
       print('Password: ${state.password.value}');
-      print('===Continue===');
-      await signInlUseCase
+      yield state.copyWith(status: FormzStatus.submissionInProgress);
+
+      final result = await signInlUseCase
           .call(SignInEmailParams(state.email.value, state.password.value));
-      yield state.copyWith(status: FormzStatus.submissionSuccess);
-    } on SignFailure catch (error) {
+
+      yield* result.fold((l) async* {
+        yield state.copyWith(status: FormzStatus.submissionFailure);
+      }, (result) async* {
+        yield state.copyWith(status: FormzStatus.submissionSuccess);
+      });
+    } on ServerException catch (error) {
       yield state.copyWith(
           errorMessage: error.message, status: FormzStatus.submissionFailure);
+    } catch (error) {
+      print(error);
     }
   }
 }

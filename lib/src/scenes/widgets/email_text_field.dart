@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/src/constants/constants.dart';
-import 'package:restaurant/src/utils/validator.dart';
 
 class EmailTextField extends StatelessWidget {
   final bool invalid;
