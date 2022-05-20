@@ -1,27 +1,27 @@
 import 'package:equatable/equatable.dart';
 
-enum TabbarStatus { home, discover, profile }
+enum TabbarStatus { Home, Discover, Profile }
 
 class TabbarState extends Equatable {
   final TabbarStatus status;
 
   const TabbarState._({
-    this.status = TabbarStatus.home,
+    this.status = TabbarStatus.Home,
   });
 
   const TabbarState.discover()
       : this._(
-          status: TabbarStatus.discover,
+          status: TabbarStatus.Discover,
         );
 
   const TabbarState.home()
       : this._(
-          status: TabbarStatus.home,
+          status: TabbarStatus.Home,
         );
 
   const TabbarState.profile()
       : this._(
-          status: TabbarStatus.profile,
+          status: TabbarStatus.Profile,
         );
 
   @override

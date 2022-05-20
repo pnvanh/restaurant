@@ -5,6 +5,7 @@ class AppTextStyles {
     return TextStyle(
       color: color,
       fontWeight: FontWeight.normal,
+      fontFamily: 'Inter-Regular',
       fontSize: size,
     );
   }
@@ -13,6 +14,7 @@ class AppTextStyles {
     return TextStyle(
       color: color,
       fontWeight: FontWeight.w600,
+      fontFamily: 'Inter-Regular',
       fontSize: size,
     );
   }
@@ -21,17 +23,19 @@ class AppTextStyles {
     return TextStyle(
       color: color,
       fontWeight: FontWeight.bold,
+      fontFamily: 'Inter-Regular',
       fontSize: size,
     );
   }
 
-  // static TextStyle blackBold(double size) {
-  //   return TextStyle(
-  //     color: Colors.black,
-  //     fontWeight: FontWeight.bold,
-  //     fontSize: size,
-  //   );
-  // }
+  static TextStyle appBar() {
+    return TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Inter-Regular',
+      fontSize: 24,
+    );
+  }
 
   // static TextStyle blackSemiBold(double size) {
   //   return TextStyle(

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:restaurant/src/constants/app_colors.dart';
-import '../../discover/pages/discover_page.dart';
-import '../../home/pages/home_page.dart';
-import '../../profile/pages/pages.dart';
-import '../blocs/bloc.dart';
+import 'package:restaurant/src/scenes/discover/pages/pages.dart';
+import 'package:restaurant/src/scenes/home/pages/pages.dart';
+import 'package:restaurant/src/scenes/profile/pages/profile_page.dart';
+import 'package:restaurant/src/scenes/tabbar/blocs/bloc.dart';
+import 'package:restaurant/src/scenes/tabbar/widgets/widgets.dart';
 
 class TabbarBody extends StatelessWidget {
   final components = TabbarComponents();
@@ -27,11 +28,11 @@ class TabbarBody extends StatelessWidget {
 
   int _selectedIndex(TabbarStatus status) {
     switch (status) {
-      case TabbarStatus.home:
+      case TabbarStatus.Home:
         return 0;
-      case TabbarStatus.discover:
+      case TabbarStatus.Discover:
         return 1;
-      case TabbarStatus.profile:
+      case TabbarStatus.Profile:
         return 2;
       default:
         return 0;
@@ -43,6 +44,7 @@ class TabbarBody extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
+        appBar: PrimaryAppBar(),
         extendBody: true,
         backgroundColor: AppColors.backgroudColor,
         body: BlocBuilder<TabbarBloc, TabbarState>(
