@@ -4,4 +4,5 @@ class APIUrl {
   static const root = host + apiVersion;
 
   static const login = root + 'auth/login';
+  static const banners = root + 'banners';
 }

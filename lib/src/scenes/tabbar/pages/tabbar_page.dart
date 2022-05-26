@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant/src/core/network/network_info.dart';
+import 'package:restaurant/src/data/repositories/home_repository_implement.dart';
+import 'package:restaurant/src/datasources/remote/home_remote_datasource.dart';
+import 'package:restaurant/src/scenes/home/blocs/bloc.dart';
 import 'package:restaurant/src/scenes/tabbar/blocs/bloc.dart';
 import 'pages.dart';
 
@@ -19,6 +23,14 @@ class TabbarPage extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => TabbarBloc(TabbarState.home()),
+        ),
+        BlocProvider<HomeBloc>(
+          create: (context) => HomeBloc(
+            repository: HomeRepositoryImplement(
+              remoteDatasource: HomeRemoteDatasourceImplement(),
+              networkInfo: NetworkInfoImplement(),
+            ),
+          )..add(HomeNewListRequested()),
         ),
       ],
       child: TabbarBody(),

@@ -3,3 +3,4 @@ export 'password_text_field.dart';
 export 'username_text_field.dart';
 export 'email.dart';
 export 'password.dart';
+export 'search_text_field.dart';

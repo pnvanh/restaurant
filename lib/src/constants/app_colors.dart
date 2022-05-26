@@ -13,4 +13,6 @@ class AppColors {
   static final grayChateau = Color(0xFF9CA3AF);
   static final gray = Color(0xFF4B5563);
   static final backgroudColor = Color(0xFFF6F6F6);
+  static final grayGravity = Color(0xFFE6E7E9);
+  static final ebonyClay = Color(0xFF1F2937);
 }
