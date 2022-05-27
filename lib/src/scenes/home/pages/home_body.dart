@@ -1,13 +1,10 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant/src/constants/app_colors.dart';
-import 'package:restaurant/src/data/models/banner_model.dart';
 import 'package:restaurant/src/platform/entities/banner_entity.dart';
 import 'package:restaurant/src/scenes/home/blocs/bloc.dart';
 import 'package:restaurant/src/scenes/home/widgets/home_banner.dart';
 import 'package:restaurant/src/scenes/home/widgets/today_new_arivable.dart';
-import 'package:restaurant/src/scenes/splash/widgets/widgets.dart';
+import 'package:restaurant/src/scenes/home/widgets/widget.dart';
 import 'package:restaurant/src/scenes/widgets/widgets.dart';
 
 class HomeBody extends StatefulWidget {
@@ -43,6 +40,10 @@ class _HomeBodyState extends State<HomeBody> {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 36),
             child: TodayNewArivable(),
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 36),
+            child: RestaurantBooking(),
           ),
         ],
       ),

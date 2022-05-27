@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:restaurant/src/constants/app_colors.dart';
-import 'package:restaurant/src/constants/app_text_style.dart';
 import 'package:restaurant/src/platform/entities/food_entity.dart';
 import 'package:restaurant/src/scenes/home/blocs/bloc.dart';
-import 'package:restaurant/src/scenes/home/widgets/new_food.dart';
 import 'package:restaurant/src/scenes/home/widgets/widget.dart';
 
 class TodayNewArivable extends StatelessWidget {
