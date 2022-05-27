@@ -14,8 +14,6 @@ class BannerModel extends BannerEntity {
         );
 
   factory BannerModel.fromJson(Map<String, dynamic> json) {
-    // var genreReultFromJson = json["result"] as List;
-
     return BannerModel(
       id: json["id"] as int,
       name: json["name"] as String,

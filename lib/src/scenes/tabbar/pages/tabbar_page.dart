@@ -24,14 +24,6 @@ class TabbarPage extends StatelessWidget {
         BlocProvider(
           create: (context) => TabbarBloc(TabbarState.home()),
         ),
-        BlocProvider<HomeBloc>(
-          create: (context) => HomeBloc(
-            repository: HomeRepositoryImplement(
-              remoteDatasource: HomeRemoteDatasourceImplement(),
-              networkInfo: NetworkInfoImplement(),
-            ),
-          )..add(HomeNewListRequested()),
-        ),
       ],
       child: TabbarBody(),
     );

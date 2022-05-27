@@ -1,11 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:restaurant/src/core/errror/failure.dart';
 import 'package:restaurant/src/data/models/banner_model.dart';
+import 'package:restaurant/src/platform/entities/banner_entity.dart';
+import 'package:restaurant/src/platform/entities/food_entity.dart';
 import 'package:restaurant/src/platform/repositories/home_repository.dart';
 import 'package:restaurant/src/scenes/home/blocs/bloc.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc({required HomeRepository repository})
+class HomeBannerBloc extends Bloc<HomeEvent, HomeState> {
+  HomeBannerBloc({required HomeRepository repository})
       : this.repository = repository,
         super(HomeInitial());
 
@@ -13,21 +15,69 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
-    if (event is HomeNewListRequested) {
+    if (event is HomeBannerRequested) {
       yield* mapListBannersRequestedToState(event);
+    }
+
+    if (event is HomeListNewFoodsRequested) {
+      yield* mapListNewFoodsRequestedToSate(event);
     }
   }
 
   Stream<HomeState> mapListBannersRequestedToState(
-      HomeNewListRequested event) async* {
+      HomeBannerRequested event) async* {
     try {
       final result = await repository.fetchHomeBanners();
       if (result.isRight() == true) {
-        final List<BannerModel>? banners = result.getOrElse(() => []);
+        final List<BannerEntity>? banners = result.getOrElse(() => []);
+
         yield HomeNewListSuccess(banners: banners);
       }
     } on HomeNewListFailure catch (error) {
-      yield HomeNewListFailure('HomeNewListFailure');
+      yield HomeNewListFailure('HomeNewListFailure $error');
+    }
+  }
+
+  Stream<HomeState> mapListNewFoodsRequestedToSate(
+      HomeListNewFoodsRequested event) async* {
+    try {
+      final results = await repository.fetchListNewFood();
+
+      if (results.isRight()) {
+        final List<FoodEntity>? foods = results.getOrElse(() => []);
+        yield HomeNewListSuccess(foods: foods);
+      }
+    } on HomeNewListFailure catch (error) {
+      yield HomeNewListFailure('message: $error');
+    }
+  }
+}
+
+class HomeNewBloc extends Bloc<HomeEvent, HomeState> {
+  HomeNewBloc({required HomeRepository repository})
+      : this.repository = repository,
+        super(HomeInitial());
+
+  final HomeRepository repository;
+
+  @override
+  Stream<HomeState> mapEventToState(HomeEvent event) async* {
+    if (event is HomeListNewFoodsRequested) {
+      yield* mapListNewFoodsRequestedToSate(event);
+    }
+  }
+
+  Stream<HomeState> mapListNewFoodsRequestedToSate(
+      HomeListNewFoodsRequested event) async* {
+    try {
+      final results = await repository.fetchListNewFood();
+
+      if (results.isRight()) {
+        final List<FoodEntity>? foods = results.getOrElse(() => []);
+        yield HomeNewListSuccess(foods: foods);
+      }
+    } on HomeNewListFailure catch (error) {
+      yield HomeNewListFailure('message: $error');
     }
   }
 }
