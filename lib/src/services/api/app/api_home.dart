@@ -1,8 +1,10 @@
 import 'package:restaurant/src/core/errror/error.dart';
 import 'package:restaurant/src/data/models/banner_model.dart';
 import 'package:restaurant/src/data/models/food_model.dart';
+import 'package:restaurant/src/data/models/restaurant_model.dart';
 import 'package:restaurant/src/platform/entities/banner_entity.dart';
 import 'package:restaurant/src/platform/entities/food_entity.dart';
+import 'package:restaurant/src/platform/entities/restaurant_entity.dart';
 import 'package:restaurant/src/services/api/app/api_url.dart';
 import 'package:restaurant/src/services/api/core/api_base_input.dart';
 import 'package:restaurant/src/services/api/core/api_base_output.dart';
@@ -22,6 +24,16 @@ extension APIHome on APIService {
     try {
       APIBaseOutput dataJson = await requestGet(input);
       return HomeNewOutput(dataJson.json);
+    } on ServerException catch (error) {
+      throw ServerException(error.message);
+    }
+  }
+
+  Future<RestaurantListOutput> fetchListRestaurant(
+      RestaurantListInput input) async {
+    try {
+      APIBaseOutput dataJson = await requestGet(input);
+      return RestaurantListOutput(dataJson.json);
     } on ServerException catch (error) {
       throw ServerException(error.message);
     }
@@ -71,5 +83,30 @@ class HomeNewOutput extends APIBaseOutput {
         genreFoodsFromJson.map((e) => FoodModel.fromJson(e)).toList();
 
     foods = result;
+  }
+}
+
+// RESTAURANT
+
+class RestaurantListInput extends APIBaseInput {
+  RestaurantListInput() : super(url: APIUrl.restaurant, body: {});
+}
+
+class RestaurantListOutput extends APIBaseOutput {
+  List<RestaurantEntity>? restaurants;
+
+  RestaurantListOutput(Map<String, dynamic> json) : super(json);
+
+  @override
+  mapping(Map<String, dynamic> json) {
+    super.mapping(json);
+    print("JSON => $json");
+
+    var genreRestaurantListFromJson = json['result'] as List;
+    List<RestaurantEntity> result = genreRestaurantListFromJson
+        .map((e) => RestaurantModel.fromJson(e))
+        .toList();
+
+    restaurants = result;
   }
 }

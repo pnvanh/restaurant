@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant/src/platform/entities/restaurant_entity.dart';
+import 'package:restaurant/src/scenes/home/blocs/bloc.dart';
 import 'package:restaurant/src/scenes/home/widgets/widget.dart';
 
 class RestaurantBooking extends StatelessWidget {
@@ -8,22 +11,29 @@ class RestaurantBooking extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 18.0),
-      child: Column(
-        // ignore: prefer_const_literals_to_create_immutables
-        children: <Widget>[
-          ProductContent(
-            title: 'Booking Restaurant',
-            description: 'Check your city Near by Restaurant',
-          ),
-          Container(
-            height: 200,
-            color: Colors.red,
-          ),
-          SizedBox(
-            height: 80,
-          )
-        ],
-      ),
+      child: BlocBuilder<HomeRestaurantListBloc, HomeState>(
+          builder: (context, state) {
+        List<RestaurantEntity>? restaurants;
+        if (state is HomeNewListSuccess) {
+          restaurants = state.restaurants;
+        }
+
+        if (restaurants == null) {
+          return Container();
+        }
+
+        return Column(
+          children: <Widget>[
+            ProductContent(
+              title: 'Today New Arivable',
+              description: 'Best of the today  food list update',
+            ),
+            RestaurantsList(
+              restaurants: restaurants,
+            ),
+          ],
+        );
+      }),
     );
   }
 }

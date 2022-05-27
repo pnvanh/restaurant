@@ -6,4 +6,5 @@ class APIUrl {
   static const login = root + 'auth/login';
   static const banners = root + 'banners';
   static const newFood = root + 'new-food';
+  static const restaurant = root + 'restaurant';
 }

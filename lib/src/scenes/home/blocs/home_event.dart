@@ -8,3 +8,5 @@ abstract class HomeEvent extends Equatable {
 class HomeBannerRequested extends HomeEvent {}
 
 class HomeListNewFoodsRequested extends HomeEvent {}
+
+class HomeListRestaurantsRequested extends HomeEvent {}

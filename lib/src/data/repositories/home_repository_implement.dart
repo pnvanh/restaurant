@@ -2,11 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:restaurant/src/core/errror/exception.dart';
 import 'package:restaurant/src/core/errror/failure.dart';
 import 'package:restaurant/src/core/network/network_info.dart';
-import 'package:restaurant/src/data/models/banner_model.dart';
-import 'package:restaurant/src/data/models/food_model.dart';
 import 'package:restaurant/src/datasources/remote/home_remote_datasource.dart';
 import 'package:restaurant/src/platform/entities/banner_entity.dart';
 import 'package:restaurant/src/platform/entities/food_entity.dart';
+import 'package:restaurant/src/platform/entities/restaurant_entity.dart';
 import 'package:restaurant/src/platform/repositories/home_repository.dart';
 
 class FetchHomeBannerFailure extends Failure {
@@ -48,6 +47,20 @@ class HomeRepositoryImplement extends HomeRepository {
       try {
         final listNewFood = await remoteDatasource.fetchListNewFoods();
         return Right(listNewFood);
+      } on ServerException catch (error) {
+        return Left(FetchListNewFoodFailure(error.message));
+      }
+    } else {
+      return Left(FetchListNewFoodFailure('Netword unavailable!'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<RestaurantEntity>>> fetchListRestaurants() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final listRestaurants = await remoteDatasource.fetchListRestaurants();
+        return Right(listRestaurants);
       } on ServerException catch (error) {
         return Left(FetchListNewFoodFailure(error.message));
       }

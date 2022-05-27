@@ -33,7 +33,14 @@ class _HomePageState extends State<HomePage> {
                 remoteDatasource: HomeRemoteDatasourceImplement(),
                 networkInfo: NetworkInfoImplement()),
           )..add(HomeListNewFoodsRequested()),
-        )
+        ),
+        BlocProvider(
+          create: (context) => HomeRestaurantListBloc(
+            repository: HomeRepositoryImplement(
+                remoteDatasource: HomeRemoteDatasourceImplement(),
+                networkInfo: NetworkInfoImplement()),
+          )..add(HomeListRestaurantsRequested()),
+        ),
       ],
       child: HomeBody(),
     );
