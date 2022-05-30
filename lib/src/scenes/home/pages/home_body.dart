@@ -20,7 +20,9 @@ class _HomeBodyState extends State<HomeBody> {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          SearchTextField(textChanged: (text) => {print(text)}),
+          SearchTextField(
+            textChanged: (text) => {print(text)},
+          ),
           BlocBuilder<HomeBannerBloc, HomeState>(
             builder: (context, state) {
               List<BannerEntity>? banners;

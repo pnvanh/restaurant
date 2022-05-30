@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/src/constants/constants.dart';
+import 'package:restaurant/src/routers/routers.dart';
+import 'package:restaurant/src/scenes/search/pages/search_page.dart';
 
 class SearchTextField extends StatelessWidget {
   final Function textChanged;
@@ -25,7 +27,7 @@ class SearchTextField extends StatelessWidget {
         ),
         margin: EdgeInsets.all(12),
         child: Row(
-          children: const <Widget>[
+          children: <Widget>[
             Padding(
               padding: EdgeInsets.only(left: 27),
               child: Icon(
@@ -36,6 +38,16 @@ class SearchTextField extends StatelessWidget {
             ),
             Expanded(
               child: TextField(
+                onTap: () {
+                  // Navigator.pushNamed(context, searchRouter);
+                  Navigator.of(context).push(PageRouteBuilder(
+                      transitionDuration: Duration(seconds: 1),
+                      settings: RouteSettings(name: searchRouter),
+                      opaque: false,
+                      pageBuilder: (BuildContext context, _, __) {
+                        return SearchPage();
+                      }));
+                },
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   border: InputBorder.none,

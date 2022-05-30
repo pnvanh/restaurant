@@ -39,15 +39,12 @@ class NewFood extends StatelessWidget {
                           topLeft: Radius.circular(8.0),
                           topRight: Radius.circular(8.0),
                         ),
-                        child: Hero(
-                          tag: index,
-                          child: FadeInImage.assetNetwork(
-                            image: foods[index].imageUrl ?? "",
-                            fit: BoxFit.cover,
-                            placeholder: "assets/images/placeholder-image.png",
-                            placeholderScale:
-                                MediaQuery.of(context).size.width / 2,
-                          ),
+                        child: FadeInImage.assetNetwork(
+                          image: foods[index].imageUrl ?? "",
+                          fit: BoxFit.cover,
+                          placeholder: "assets/images/placeholder-image.png",
+                          placeholderScale:
+                              MediaQuery.of(context).size.width / 2,
                         ),
                       ),
                     ),

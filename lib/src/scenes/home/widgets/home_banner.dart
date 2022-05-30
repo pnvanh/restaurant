@@ -28,14 +28,11 @@ class _HomeBannerState extends State<HomeBanner> {
               margin: EdgeInsets.symmetric(horizontal: 6.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
-                child: Hero(
-                  tag: index,
-                  child: FadeInImage.assetNetwork(
-                    image: widget.banners[index].imageUrl ?? "",
-                    fit: BoxFit.cover,
-                    placeholder: "assets/images/placeholder-image.png",
-                    placeholderScale: MediaQuery.of(context).size.width / 2,
-                  ),
+                child: FadeInImage.assetNetwork(
+                  image: widget.banners[index].imageUrl ?? "",
+                  fit: BoxFit.cover,
+                  placeholder: "assets/images/placeholder-image.png",
+                  placeholderScale: MediaQuery.of(context).size.width / 2,
                 ),
               ),
             );
