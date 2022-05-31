@@ -43,7 +43,10 @@ class _SearchBodyState extends State<SearchBody> {
           target: currentLatLng ?? LatLng(37.785834, -122.406417),
           zoom: 14,
         ),
-        onMapCreated: (GoogleMapController controller) {
+        onMapCreated: (GoogleMapController controller) async {
+          String style = await DefaultAssetBundle.of(context)
+              .loadString('assets/draft/map_style.json');
+          controller.setMapStyle(style);
           _controller.complete(controller);
         },
       ),
