@@ -8,3 +8,11 @@ class APIUrl {
   static const newFood = root + 'new-food';
   static const restaurant = root + 'restaurant';
 }
+
+class APIDiscoveryUrl {
+  static const host = 'https://api.yelp.com/';
+  static const apiVersion = 'v3/';
+  static const root = host + apiVersion;
+  static const business = root + 'businesses/';
+  static const search = business + "search";
+}
