@@ -1,6 +1,8 @@
 # About me
 <!-- Describe your project in brief -->
-![GIF](https://i.gifer.com/origin/c0/c05e0a986df727559354c449602105d0.gif)
+<p align="center">
+    <img src="https://i.gifer.com/origin/c0/c05e0a986df727559354c449602105d0.gif" width="350" title="hover text">
+</p>
 
 Description
 <!-- Add badges with link to Shields IO -->
