@@ -24,6 +24,5 @@ To use this project, first clone the repo on your device using the command below
 ```git clone https://github.com/pnvanh/restaurant.git```
 
 # Usage
-[(Back to top)](#table-of-contents)
 
 Use
