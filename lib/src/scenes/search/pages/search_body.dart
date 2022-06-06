@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:restaurant/src/constants/app_colors.dart';
+import 'package:restaurant/src/constants/app_text_style.dart';
 import 'package:restaurant/src/extentions/format_image.dart';
 import 'package:restaurant/src/platform/entities/business_entity.dart';
 import 'package:restaurant/src/scenes/search/widgets/restaurant_info.dart';
@@ -17,9 +19,14 @@ class SearchBody extends StatefulWidget {
 class _SearchBodyState extends State<SearchBody> {
   List<Marker> markerList = [];
   List<BusinessEntity> restaurants = [];
+
   LatLng? currentLatLng;
-  late Uint8List markerIcon;
+  LatLng? newLatLng;
+
   bool isShowResraurant = false;
+  bool isShowSearchArea = false;
+
+  late Uint8List markerIcon;
 
   Completer<GoogleMapController> _controller = Completer();
   final PageController _pageController = PageController();
@@ -50,7 +57,6 @@ class _SearchBodyState extends State<SearchBody> {
         if (state.restaurants != null) {
           setState(() {
             restaurants = state.restaurants ?? [];
-
             state.restaurants?.forEach((element) {
               var index = restaurants.indexOf(element);
               markerList.add(
@@ -76,32 +82,79 @@ class _SearchBodyState extends State<SearchBody> {
           return Stack(
             children: [
               GoogleMap(
-                myLocationEnabled: true,
-                myLocationButtonEnabled: false,
-                mapType: MapType.normal,
-                initialCameraPosition: CameraPosition(
-                  target: currentLatLng ?? LatLng(0, 0),
-                  zoom: 14,
-                ),
-                markers: Set<Marker>.of(markerList),
-                onMapCreated: (GoogleMapController controller) async {
-                  state.location = currentLatLng;
-                  BlocProvider.of<SearchBloc>(context).add(
-                    LocationLoaded(
-                      currentLatLng ?? LatLng(0, 0),
+                  myLocationEnabled: true,
+                  myLocationButtonEnabled: false,
+                  mapType: MapType.normal,
+                  initialCameraPosition: CameraPosition(
+                    target: currentLatLng!,
+                    zoom: 14,
+                  ),
+                  markers: Set<Marker>.of(markerList),
+                  onMapCreated: (GoogleMapController controller) async {
+                    state.location = currentLatLng;
+                    BlocProvider.of<SearchBloc>(context).add(
+                      LocationLoaded(
+                        currentLatLng ?? LatLng(0, 0),
+                      ),
+                    );
+
+                    String style = await DefaultAssetBundle.of(context)
+                        .loadString('assets/draft/map_style.json');
+                    controller.animateCamera(CameraUpdate.newLatLngZoom(
+                        LatLng(currentLatLng?.latitude ?? 0,
+                            currentLatLng?.longitude ?? 0),
+                        14));
+                    isShowSearchArea = false;
+                    controller.setMapStyle(style);
+                    _controller.complete(controller);
+                  },
+                  onCameraMove: (cameraPosition) {
+                    double distanceInMeters = Geolocator.distanceBetween(
+                        cameraPosition.target.latitude,
+                        cameraPosition.target.longitude,
+                        currentLatLng?.latitude ?? 0,
+                        currentLatLng?.longitude ?? 0);
+
+                    setState(() {
+                      distanceInMeters > 2500
+                          ? isShowSearchArea = true
+                          : isShowSearchArea = false;
+
+                      newLatLng = LatLng(cameraPosition.target.latitude,
+                          cameraPosition.target.longitude);
+                    });
+                  }),
+              Positioned(
+                bottom: (MediaQuery.of(context).size.height * 0.26) + 40,
+                left: 56,
+                right: 56,
+                child: Visibility(
+                  visible: isShowSearchArea,
+                  child: Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          BlocProvider.of<SearchBloc>(context).add(
+                            LocationLoaded(
+                              newLatLng ?? LatLng(0, 0),
+                            ),
+                          );
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      child: Text(
+                        'Search this area',
+                        style: AppTextStyles.textRegular(
+                            14, AppColors.jungleGreen),
+                      ),
                     ),
-                  );
-
-                  String style = await DefaultAssetBundle.of(context)
-                      .loadString('assets/draft/map_style.json');
-                  controller.animateCamera(CameraUpdate.newLatLngZoom(
-                      LatLng(currentLatLng?.latitude ?? 0,
-                          currentLatLng?.longitude ?? 0),
-                      14));
-
-                  controller.setMapStyle(style);
-                  _controller.complete(controller);
-                },
+                  ),
+                ),
               ),
               Positioned(
                   bottom: 50.0,
