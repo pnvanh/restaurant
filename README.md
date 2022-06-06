@@ -1,8 +1,8 @@
 # Restaurant Flutter
 <!-- Add a demo for your project -->
 <p align="center">
-  <img src="https://i.snipboard.io/SmxRwh.jpg" width="350" title="hover text">
-  <img src="https://i.snipboard.io/SmxRwh.jpg" width="350" alt="accessibility text">
+  <img src="https://github.com/pnvanh/restaurant/blob/develop/assets/sample/home.png" width="350" title="hover text">
+  <img src="https://github.com/pnvanh/restaurant/blob/develop/assets/sample/discover.png" width="350" alt="accessibility text">
 </p>
 
 # Description
