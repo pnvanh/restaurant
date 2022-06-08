@@ -20,7 +20,7 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.backgroudColor,
-      appBar: SearchppBar(context),
+      appBar: SearchAppBar(context),
       body: BlocProvider<SearchBloc>(
         create: (context) => SearchBloc(
           businessUsecase: BusinessUsecase(

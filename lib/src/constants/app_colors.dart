@@ -16,4 +16,6 @@ class AppColors {
   static final grayGravity = Color(0xFFE6E7E9);
   static final ebonyClay = Color(0xFF1F2937);
   static final bluewood = Color(0xFF2C3E50);
+  static final blue = Color(0xFF2C8DFF);
+  static final card = Color(0xFFECECEC);
 }

@@ -2,10 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:restaurant/src/constants/constants.dart';
 import 'package:restaurant/src/platform/entities/restaurant_entity.dart';
-import 'package:restaurant/src/routers/routers.dart';
+import 'package:restaurant/src/scenes/home/widgets/product_content.dart';
 
-class RestaurantsList extends StatelessWidget {
-  const RestaurantsList({
+class OtherRestaurant extends StatelessWidget {
+  OtherRestaurant({
+    Key? key,
+    required this.restaurants,
+  }) : super(key: key);
+  List<RestaurantEntity> restaurants;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.all(20.0),
+        child: Column(
+          children: <Widget>[
+            ProductContent(
+              title: 'Today New Arivable',
+              description: 'Best of the today  food list update',
+            ),
+            OtherRestaurantsList(
+              restaurants: restaurants,
+            ),
+          ],
+        ));
+  }
+}
+
+class OtherRestaurantsList extends StatelessWidget {
+  const OtherRestaurantsList({
     Key? key,
     required this.restaurants,
   }) : super(key: key);
@@ -22,37 +46,37 @@ class RestaurantsList extends StatelessWidget {
         itemCount: restaurants.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.only(bottom: 6.0),
+            padding: EdgeInsets.symmetric(vertical: 8.0),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(16),
                 ),
+                border: Border.all(
+                  width: 0.5,
+                  color: AppColors.grayChateau,
+                ),
               ),
               child: Container(
                 padding: EdgeInsets.all(12.0),
                 child: Row(
                   children: <Widget>[
-                    Hero(
-                      tag: restaurants[index].id.toString(),
-                      child: Container(
-                        height: 64,
-                        padding: EdgeInsets.only(right: 16.0),
-                        child: AspectRatio(
-                          aspectRatio: 1,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(8.0),
-                            ),
-                            child: FadeInImage.assetNetwork(
-                              image: restaurants[index].imageUrl ?? "",
-                              fit: BoxFit.cover,
-                              placeholder:
-                                  "assets/images/placeholder-image.png",
-                              placeholderScale:
-                                  MediaQuery.of(context).size.width / 2,
-                            ),
+                    Container(
+                      height: 64,
+                      padding: EdgeInsets.only(right: 16.0),
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8.0),
+                          ),
+                          child: FadeInImage.assetNetwork(
+                            image: restaurants[index].imageUrl ?? "",
+                            fit: BoxFit.cover,
+                            placeholder: "assets/images/placeholder-image.png",
+                            placeholderScale:
+                                MediaQuery.of(context).size.width / 2,
                           ),
                         ),
                       ),
@@ -86,7 +110,7 @@ class RestaurantsList extends StatelessWidget {
                               ),
                               SizedBox(
                                 height: 28.0,
-                                width: 88.0,
+                                // width: 88.0,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     primary: AppColors.jungleGreen,
@@ -96,17 +120,9 @@ class RestaurantsList extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      detailRouter,
-                                      arguments: {
-                                        'restaurant': restaurants[index]
-                                      },
-                                    );
-                                  },
+                                  onPressed: () {},
                                   child: Text(
-                                    'Book',
+                                    'Check',
                                     style: AppTextStyles.textSemiBold(
                                         12, Colors.white),
                                   ),
