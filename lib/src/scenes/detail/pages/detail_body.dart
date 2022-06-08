@@ -63,7 +63,9 @@ class _DetailBodyState extends State<DetailBody> {
             ],
           ),
         ),
-        BookingButton()
+        BookingButton(
+          restaurant: restaurant,
+        )
       ],
     );
   }
