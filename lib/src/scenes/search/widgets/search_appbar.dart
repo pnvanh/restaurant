@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/src/constants/app_colors.dart';
 
-class SearchppBar extends AppBar {
-  SearchppBar(
+class SearchAppBar extends AppBar {
+  SearchAppBar(
     @required BuildContext context,
   ) : super(
           centerTitle: true,
