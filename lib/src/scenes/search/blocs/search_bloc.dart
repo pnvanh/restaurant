@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:restaurant/src/core/usecase/usecase.dart';
 import 'package:restaurant/src/platform/entities/business_entity.dart';
 import 'package:restaurant/src/platform/usecase/business_usecase.dart';
 import 'package:restaurant/src/scenes/search/blocs/search_event.dart';

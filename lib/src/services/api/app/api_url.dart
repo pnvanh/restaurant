@@ -7,6 +7,7 @@ class APIUrl {
   static const banners = root + 'banners';
   static const newFood = root + 'new-food';
   static const restaurant = root + 'restaurant';
+  static const history = root + 'booking-hisotry';
 }
 
 class APIDiscoveryUrl {

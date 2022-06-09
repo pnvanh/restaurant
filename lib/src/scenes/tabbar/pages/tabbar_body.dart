@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:restaurant/src/constants/app_colors.dart';
 import 'package:restaurant/src/scenes/discover/pages/pages.dart';
+import 'package:restaurant/src/scenes/history/pages/history_page.dart';
 import 'package:restaurant/src/scenes/home/pages/pages.dart';
 import 'package:restaurant/src/scenes/profile/pages/profile_page.dart';
 import 'package:restaurant/src/scenes/tabbar/blocs/bloc.dart';
@@ -116,7 +117,7 @@ class TabbarComponents {
 
   final children = [
     HomePage(),
-    DiscoverPage(),
+    HistoryPage(),
     ProfilePage(),
   ];
 }

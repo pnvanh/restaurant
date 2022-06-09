@@ -18,4 +18,5 @@ class AppColors {
   static final bluewood = Color(0xFF2C3E50);
   static final blue = Color(0xFF2C8DFF);
   static final card = Color(0xFFECECEC);
+  static final booking = Color(0xFF6B7280);
 }
